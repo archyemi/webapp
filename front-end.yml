@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend 
+  labels:
+    app: webapp
+    
+spec: 
+  replicas: 3
+  selectors: 
+    matchLabels:
+       app: webapp
+       
+  template:
+    metadata:
+      name: webapp-pod
+      labels:
+        name: webapp-pod
+        app: webapp
+    spec:
+      containers:
+        - name: webapp
+          image: gcr.io/google-samples/gb-frontendv4
+          ports:
+          - containerPort: 80
